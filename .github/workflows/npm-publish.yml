@@ -9,6 +9,7 @@ jobs:
     outputs:
       changed: ${{ steps.version-check.outputs.changed }}
       version: ${{ steps.version-check.outputs.version }}
+      commit: ${{ steps.version-check.outputs.commit }}
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
@@ -25,6 +26,8 @@ jobs:
     if: needs.version-check.outputs.changed == 'true'
     steps:
       - uses: actions/checkout@v2
+        with:
+          ref: ${{ needs.version-check.outputs.commit }}
       - uses: actions/setup-node@v1
         with:
           node-version: 12
@@ -32,10 +35,12 @@ jobs:
       - run: npm test
 
   publish-npm:
-    needs: run-test
+    needs: [version-check, run-test]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          ref: ${{ needs.version-check.outputs.commit }}
       - uses: actions/setup-node@v1
         with:
           node-version: 12
@@ -46,7 +51,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
 
   create-tag:
-    needs: [version-check, run-test]
+    needs: [version-check, publish-npm]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/github-script@v3
@@ -56,6 +61,6 @@ jobs:
             github.git.createRef({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              ref: "refs/tags/thiisatest",
-              sha: context.sha
+              ref: "refs/tags/${{ needs.version-check.outputs.version }}",
+              sha: "${{ needs.version-check.outputs.commit }}"
             })
