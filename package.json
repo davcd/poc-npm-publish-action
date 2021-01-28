@@ -1,6 +1,6 @@
 {
   "name": "poc-npm-publish-action",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Proof of concept for npm publish github action",
   "main": "index.js",
   "scripts": {
