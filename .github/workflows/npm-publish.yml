@@ -62,5 +62,5 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               ref: "refs/tags/v${{ needs.version-check.outputs.version }}",
-              sha: needs.version-check.outputs.commit
+              sha: "${{ needs.version-check.outputs.commit }}"
             })
