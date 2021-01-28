@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/davcd/poc-npm-publish-action/issues"
   },
-  "homepage": "https://github.com/davcd/poc-npm-publish-action#readme"
+  "homepage": "https://github.com/davcd/poc-npm-publish-action#readme",
+  "dependencies": {
+    "moment": "^2.29.1"
+  }
 }
