@@ -35,7 +35,7 @@ jobs:
       - run: npm test
 
   publish-npm:
-    needs: [version-check, run-test]
+    needs: [ version-check, run-test ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -51,7 +51,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
 
   create-tag:
-    needs: [version-check, publish-npm]
+    needs: [ version-check, publish-npm ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/github-script@v3
@@ -61,6 +61,6 @@ jobs:
             github.git.createRef({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              ref: "refs/tags/${{ needs.version-check.outputs.version }}",
-              sha: "${{ needs.version-check.outputs.commit }}"
+              ref: "refs/tags/v${{ needs.version-check.outputs.version }}",
+              sha: needs.version-check.outputs.commit
             })
