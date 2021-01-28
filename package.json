@@ -1,6 +1,6 @@
 {
   "name": "@davcd/poc-npm-publish-action",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Proof of concept for npm publish github action",
   "main": "index.js",
   "scripts": {
