@@ -1,0 +1,26 @@
+{
+  "name": "poc-npm-publish-action",
+  "version": "0.0.1",
+  "description": "Proof of concept for npm publish github action",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davcd/poc-npm-publish-action.git"
+  },
+  "keywords": [
+    "poc",
+    "github",
+    "action",
+    "npm",
+    "publish"
+  ],
+  "author": "davcd",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/davcd/poc-npm-publish-action/issues"
+  },
+  "homepage": "https://github.com/davcd/poc-npm-publish-action#readme"
+}
