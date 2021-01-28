@@ -7,7 +7,7 @@ jobs:
   version-check:
     runs-on: ubuntu-latest
     outputs:
-      changed: steps.version-check.outputs.changed
+      changed: ${{ steps.version-check.outputs.changed }}
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
